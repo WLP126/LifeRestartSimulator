@@ -22,16 +22,16 @@ struct Attribute {
 // 人生事件结构体
 struct LifeEvent {
     QString description;       // 事件描述
-    int minAge;               // 最小触发年龄
-    int maxAge;               // 最大触发年龄
-    QVector<QString> choices; // 可选操作
+    int minAge;                // 最小触发年龄
+    int maxAge;                // 最大触发年龄
+    QVector<QString> choices;  // 可选操作
     QVector<Attribute> effects; // 每个操作对应的属性影响
 
     // 构造函数方便初始化
     LifeEvent(const QString& desc = "",
-             int min = 0, int max = 100,
-             const QVector<QString>& ch = QVector<QString>(),
-             const QVector<Attribute>& eff = QVector<Attribute>())
+              int min = 0, int max = 100,
+              const QVector<QString>& ch = QVector<QString>(),
+              const QVector<Attribute>& eff = QVector<Attribute>())
         : description(desc), minAge(min), maxAge(max), choices(ch), effects(eff) {}
 };
 
@@ -44,7 +44,6 @@ public:
     // 游戏控制
     void startNewLife();      // 开始新人生
     void makeChoice(int choiceIndex); // 做出选择
-    void nextYear();          // 进入下一年
 
     // 获取当前状态
     Attribute currentAttributes() const { return m_attributes; }
@@ -57,7 +56,11 @@ public:
 signals:
     void gameUpdated();       // 游戏状态更新信号
     void gameOver(QString summary); // 游戏结束信号
-public:
+
+public slots:
+    void nextYear();          // 进入下一年
+
+private:
     void loadEvents();        // 加载所有事件（硬编码）
     void triggerRandomEvent(); // 触发随机事件
 

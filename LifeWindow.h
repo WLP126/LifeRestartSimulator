@@ -2,16 +2,25 @@
 #define LIFEWINDOW_H
 
 #include <QMainWindow>
-#include <QPushButton>  // 用于定义按钮数组
-#include "LifeEngine.h" // 假设你有一个模拟人生引擎类
+#include <QPushButton>
+#include <QStackedWidget>
+#include <QTextEdit>
+#include <QPropertyAnimation>
+#include <QTimer>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
+#include <QResizeEvent>
+#include "LifeEngine.h"
 
 namespace Ui {
 class LifeWindow;
 }
 
-class LifeWindow : public QMainWindow
-{
+class LifeWindow : public QMainWindow {
     Q_OBJECT
+protected:
+    // 在现有代码中添加以下声明
+    void resizeEvent(QResizeEvent *event) override;
 
 public:
     explicit LifeWindow(QWidget *parent = nullptr);
@@ -22,15 +31,28 @@ private slots:
     void onChoiceMade(int index);     // 选择按钮被点击时，传入选项索引
     void onGameUpdated();             // 更新 UI
     void onGameOver(QString summary); // 游戏结束时显示总结信息
+    void typeWriterEffect(const QString &text);
 
 private:
-    Ui::LifeWindow *ui;               // Qt 自动生成的 UI 类
-    LifeEngine *m_engine;            // 模拟人生的核心逻辑引擎
+    Ui::LifeWindow *ui;
+    LifeEngine *m_engine;
+    QPushButton *m_choiceButtons[4];
+    QStackedWidget *m_stackedWidget;
+    QWidget *m_startPage;
+    QWidget *m_gamePage;
+    QWidget *m_summaryPage;
+    QTextEdit *m_summaryTextEdit;
+    QString m_currentDisplayText;
+    int m_typePos;
+    QTimer *m_typeTimer;
+    QGraphicsScene *m_scene;
+    QGraphicsView *m_bgView;
 
-    // ✅ 加入：用于封装 4 个选择按钮的数组
-    QPushButton* m_choiceButtons[4];
-
-    void updateUI(); // 更新界面上所有属性和事件信息
+    void updateUI();
+    void showStartPage();
+    void showGamePage();
+    void showSummaryPage();
+    void animateButton(QPushButton* button);
 };
 
 #endif // LIFEWINDOW_H

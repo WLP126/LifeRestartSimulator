@@ -1,4 +1,5 @@
 QT       += core gui
+QT += core gui widgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,5 +33,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+DISTFILES += \
+    resources/sounds/折戸伸治 - 鸟之诗 (八音盒版).mp3
+
 RESOURCES += \
     resources.qrc
+
+

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <RCC>
     <qresource prefix="/fonts">
         <file>HappyFont.ttf</file>
@@ -6,3 +7,13 @@
         <file>bg_main.jpg</file>
     </qresource>
 </RCC>
+=======
+<RCC>
+    <qresource prefix="/fonts">
+        <file>HappyFont.ttf</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>bg_main.jpg</file>
+    </qresource>
+</RCC>
+>>>>>>> be4292b (第二代代码：美化界面)

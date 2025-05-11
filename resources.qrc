@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file>HappyFont.ttf</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>bg_main.jpg</file>
+    </qresource>
+</RCC>

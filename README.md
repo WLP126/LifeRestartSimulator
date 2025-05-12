@@ -1,69 +1,135 @@
-人生重启模拟器项目说明
-一、项目概述
-人生重启模拟器是一个基于 Qt 框架开发的模拟人生游戏。玩家可以体验从出生到死亡的一生，在不同的人生阶段会遇到各种随机事件，并需要做出选择，这些选择会影响玩家角色的各项属性，最终决定人生的评价。
-二、项目结构
-1. 主要文件
-LifeEngine.h 和 LifeEngine.cpp：核心逻辑引擎，负责管理游戏的状态、加载事件、触发随机事件、处理玩家选择等。
-LifeWindow.h 和 LifeWindow.cpp：主窗口类，负责与用户交互，显示游戏界面，处理按钮点击事件，更新 UI 显示。
-main.cpp：程序入口，创建并显示主窗口。
-2. 其他文件
-.gitignore：用于忽略不需要纳入版本控制的文件。
-三、类和结构体说明
-1. Attribute 结构体
-用于表示角色的各项属性，包括智力、财富、健康、幸福和颜值，取值范围为 0 - 100。
+🧬 LifeRestartSimulator · 人生重开模拟器
+一个基于 Qt/C++ 开发的高自由度互动式人生模拟器，随机属性、成长路径、事件抉择，每一次重开都是不一样的命运。
 
-cpp
-struct Attribute {
-    int intelligence;  // 智力 (0-100)
-    int wealth;        // 财富 (0-100)
-    int health;        // 健康 (0-100)
-    int happiness;     // 幸福 (0-100)
-    int appearance;    // 颜值 (0-100)
+🎮 特性 Features
+🌱 随机生成初始属性（智力、财富、健康、幸福、颜值）
 
-    Attribute(int intel = 0, int w = 0, int h = 0, int happy = 0, int app = 0)
-        : intelligence(intel), wealth(w), health(h), happiness(happy), appearance(app) {}
-};
-2. LifeEvent 结构体
-表示一个人生事件，包含事件描述、最小触发年龄、最大触发年龄、可选操作和每个操作对应的属性影响。
+📚 覆盖从出生到晚年的完整人生阶段
 
-cpp
-struct LifeEvent {
-    QString description;       // 事件描述
-    int minAge;               // 最小触发年龄
-    int maxAge;               // 最大触发年龄
-    QVector<QString> choices; // 可选操作
-    QVector<Attribute> effects; // 每个操作对应的属性影响
+🧠 多线分支：艺术、恋爱、职场、婚姻、修仙...
 
-    LifeEvent(const QString& desc = "",
-             int min = 0, int max = 100,
-             const QVector<QString>& ch = QVector<QString>(),
-             const QVector<Attribute>& eff = QVector<Attribute>())
-        : description(desc), minAge(min), maxAge(max), choices(ch), effects(eff) {}
-};
-3. LifeEngine 类
-核心逻辑引擎类，负责游戏的控制和状态管理。
-主要成员函数
-startNewLife()：开始新的人生，初始化随机属性，触发第一个事件。
-makeChoice(int choiceIndex)：处理玩家的选择，应用选择的效果，检查游戏结束条件，进入下一年。
-nextYear()：进入下一年，处理每年的自然属性变化，有 60% 的概率触发随机事件。
-triggerRandomEvent()：触发符合当前年龄的随机事件。
-lifeSummary()：生成人生总结，包括人生记录和最终评价。
-4. LifeWindow 类
-主窗口类，负责与用户交互和 UI 显示。
-主要成员函数
-onStartClicked()：点击 “开始人生” 按钮时调用，开始新的人生。
-onChoiceMade(int index)：玩家做出选择时调用，将选择传递给 LifeEngine 处理。
-onGameUpdated()：游戏状态更新时调用，更新 UI 显示。
-onGameOver(QString summary)：游戏结束时调用，显示人生总结信息，并自动开始新游戏。
-updateUI()：更新界面上的所有属性和事件信息。
-四、使用说明
-1. 编译和运行
-确保已经安装了 Qt 开发环境，然后使用 Qt Creator 打开项目，编译并运行。
-2. 游戏流程
-点击 “开始人生” 按钮，游戏开始，角色出生并获得随机属性。
-在不同的年龄阶段，可能会遇到各种随机事件，每个事件有多个可选操作。
-点击相应的选择按钮做出选择，选择会影响角色的属性。
-游戏会持续进行，直到角色的健康降到 0 或活到 100 岁，游戏结束后会显示人生总结，并自动开始新游戏。
-五、注意事项
-代码中的事件是硬编码的，可以根据需要在 LifeEngine::loadEvents() 函数中添加或修改事件。
-确保 UI 界面中的按钮和标签名称与代码中的引用一致，否则可能会导致 UI 显示异常。
+🧭 玩家选择决定事件走向与属性成长
+
+📊 结局评分系统 + 图文人生总结
+
+🖼️ 美观 UI（使用 Qt Widgets + QGraphicsView）
+
+🔮 可扩展事件系统（支持 flags/tags 条件判断）
+
+🛠️ 项目结构
+less
+复制
+编辑
+LifeRestartSimulator/
+├── LifeWindow.h / .cpp     // 主窗口界面及交互
+├── LifeEngine.h / .cpp     // 游戏主逻辑引擎
+├── LifeEvent.h             // 事件数据结构与枚举
+├── resources                // 字体动画等ui素材
+├── main.cpp
+├── LifeRestartSimulator.pro
+└── README.md
+💻 运行方式（本地编译）
+🔧 环境要求
+Qt 5 或 Qt 6（推荐 Qt 5.15+）
+
+Qt Creator 或命令行工具 qmake + make
+
+C++17 支持
+
+🧪 编译步骤
+bash
+复制
+编辑
+git clone https://github.com/WLP126/LifeRestartSimulator.git
+cd LifeRestartSimulator
+qmake
+make
+./LifeRestartSimulator
+📷 截图预览
+初始界面	游戏中事件选择	人生总结
+
+📦 TODO / 后续计划
+ 自定义初始属性模式
+
+ 支持更多职业路径（科研 / 宗教 / 黑客等）
+
+ 本地保存历史人生记录
+
+ JSON 事件导入导出系统
+
+🧠 灵感来源
+本项目灵感来源于 Steam 游戏《人生重开模拟器》与各类文字人生 RPG，旨在提供开放式、多结局的可重复体验。
+
+📄 License
+MIT License © 2025 WLP126
+
+# LifeRestartSimulator · 人生重开模拟器
+
+A Qt-based interactive life simulation game that lets you relive a fictional life with choices, attributes, and events from birth to old age.
+
+## 🎮 Features
+
+- 🌱 Start a new life with random initial attributes.
+- 🧠 Develop intelligence, wealth, health, happiness, and appearance.
+- 🏫 Experience school, career, relationships, family, and aging.
+- 🔄 Make choices that influence your path and unlock life events.
+- 🎨 Beautiful interface with smooth animations and a typewriter effect.
+- 🧘 Multiple endings, including immortality and enlightenment!
+
+## 📷 Preview
+
+![Preview Screenshot](preview.png)
+
+## 📦 Requirements
+
+- Qt 5.15+ (or compatible version)
+- C++11 or later
+
+## 🚀 Build & Run
+
+### Using Qt Creator:
+1. Open the project file `LifeRestartSimulator.pro`.
+2. Click "Build" and "Run".
+
+### Or via command line:
+```bash
+qmake
+make
+./LifeRestartSimulator
+📁 Project Structure
+bash
+复制
+编辑
+├── LifeEngine.h / .cpp       # Core game logic and event system
+├── LifeWindow.h / .cpp       # UI logic and display
+├── LifeEvent.h               # Event and attribute data structure
+├── LifeWindow.ui             # Qt Designer UI layout
+├── bg_main.jpg               # Background image
+├── HappyFont.ttf             # Embedded custom font
+├── preview.png               # Screenshot for README
+├── LifeRestartSimulator.pro  # Qt project configuration
+└── README.md
+🧠 Attributes Explained
+intelligence - Affects education and career choices.
+
+wealth - Influences life comfort and options.
+
+health - Decreases over time or due to bad choices.
+
+happiness - Determines emotional wellbeing.
+
+appearance - Minor effects on love and social events.
+
+🎯 Endings
+You may:
+
+Live a peaceful life.
+
+Struggle through hardships.
+
+Become rich, wise, or even... immortal.
+
+📜 License
+This project is for educational and non-commercial use. Feel free to fork and build your own version!
+
+Have fun restarting your life! 🌟

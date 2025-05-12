@@ -17,9 +17,6 @@
 🔮 可扩展事件系统（支持 flags/tags 条件判断）
 
 🛠️ 项目结构
-less
-复制
-编辑
 LifeRestartSimulator/
 ├── LifeWindow.h / .cpp     // 主窗口界面及交互
 ├── LifeEngine.h / .cpp     // 游戏主逻辑引擎
@@ -36,9 +33,6 @@ Qt Creator 或命令行工具 qmake + make
 C++17 支持
 
 🧪 编译步骤
-bash
-复制
-编辑
 git clone https://github.com/WLP126/LifeRestartSimulator.git
 cd LifeRestartSimulator
 qmake
@@ -98,9 +92,6 @@ qmake
 make
 ./LifeRestartSimulator
 📁 Project Structure
-bash
-复制
-编辑
 ├── LifeEngine.h / .cpp       # Core game logic and event system
 ├── LifeWindow.h / .cpp       # UI logic and display
 ├── LifeEvent.h               # Event and attribute data structure

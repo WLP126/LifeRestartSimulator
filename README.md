@@ -24,7 +24,6 @@ LifeRestartSimulator/
 ├── LifeWindow.h / .cpp     // 主窗口界面及交互
 ├── LifeEngine.h / .cpp     // 游戏主逻辑引擎
 ├── LifeEvent.h             // 事件数据结构与枚举
-├── resources                // 字体动画等ui素材
 ├── main.cpp
 ├── LifeRestartSimulator.pro
 └── README.md
@@ -106,8 +105,6 @@ bash
 ├── LifeWindow.h / .cpp       # UI logic and display
 ├── LifeEvent.h               # Event and attribute data structure
 ├── LifeWindow.ui             # Qt Designer UI layout
-├── bg_main.jpg               # Background image
-├── HappyFont.ttf             # Embedded custom font
 ├── preview.png               # Screenshot for README
 ├── LifeRestartSimulator.pro  # Qt project configuration
 └── README.md

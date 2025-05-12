@@ -63,6 +63,8 @@ make
 📄 License
 MIT License © 2025 WLP126
 
+---------------------------------HERE IS ENGLISH VIEW---------------------------------------
+
 # LifeRestartSimulator · 人生重开模拟器
 
 A Qt-based interactive life simulation game that lets you relive a fictional life with choices, attributes, and events from birth to old age.
